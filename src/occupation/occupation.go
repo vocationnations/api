@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func AddOccupation(db *sql.DB, onetcode string, title string, description string){
+func AddOccupation(db *sql.DB, onetcode string, title string, description string) {
 	tx, _ := db.Begin()
 	stmt, _ := tx.Prepare(`INSERT INTO occupation_data (onetcode, title, description) VALUES (?,?,?)`)
 	_, err := stmt.Exec(onetcode, title, description)
@@ -29,13 +29,13 @@ func GetOccupations(db *sql.DB) []Occupation {
 		if err != nil {
 			fmt.Println("Cannot scan appropriate rows, err: ", err)
 		}
-		AllOccupations = append(AllOccupations,_occupation)
+		AllOccupations = append(AllOccupations, _occupation)
 	}
 	return AllOccupations
 }
 
 func GetOccupationById(db *sql.DB, onetcode string) Occupation {
-	rows, err := db.Query(`SELECT * FROM occupation_data WHERE onetcode = ?`,onetcode)
+	rows, err := db.Query(`SELECT * FROM occupation_data WHERE onetcode = ?`, onetcode)
 	if err != nil {
 		fmt.Println("Cannot select occupations, err: ", err)
 	}
@@ -57,7 +57,7 @@ func GetOccupationById(db *sql.DB, onetcode string) Occupation {
 
 func GetOccupationsByTitle(db *sql.DB, title string) []Occupation {
 	search_title := "%" + title + "%"
-	rows, err := db.Query(`SELECT * FROM occupation_data WHERE title LIKE ?`,search_title)
+	rows, err := db.Query(`SELECT * FROM occupation_data WHERE title LIKE ?`, search_title)
 	if err != nil {
 		fmt.Println("Cannot select occupations with title, err: ", err)
 	}
@@ -70,7 +70,7 @@ func GetOccupationsByTitle(db *sql.DB, title string) []Occupation {
 		if err != nil {
 			fmt.Println("Cannot scan appropriate rows, err: ", err)
 		}
-		occs = append(occs,_occupation)
+		occs = append(occs, _occupation)
 	}
 	return occs
 }
