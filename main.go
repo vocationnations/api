@@ -105,7 +105,7 @@ func main() {
 
 	db, err := sql.Open("sqlite3", DBNAME)
 	if err != nil {
-		fmt.Printf("Database cannot connect, err:", err)
+		fmt.Println("Database cannot connect, err:", err)
 	}
 
 	hctx := NewHandlerContext(db)
