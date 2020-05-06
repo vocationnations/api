@@ -11,6 +11,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 
 	"./src/occupation"
+	"./src/user"
 )
 
 const (
@@ -68,6 +69,19 @@ func (ctx *HandlerContext) getOccupationsByTitle(w http.ResponseWriter, r *http.
 	if err != nil {
 		fmt.Println("JSON encoding failed, err:", err)
 	}
+}
+
+func (ctx *HandlerContext) getUserById(w http.ResponseWriter, r *http.Request){
+	vars := mux.Vars(r)
+	key := vars["id"]
+
+	User := user.GetUserById(ctx.db, key)
+	err := json.NewEncoder(w).Encode(User)
+	if err != nil {
+		fmt.Println("JSON encoding failed, err: ", err)
+	}
+
+
 }
 
 // Channels the http requests to appropriate handler functions
