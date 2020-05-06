@@ -95,6 +95,7 @@ func handleRequests(hctx *HandlerContext) {
 	router.HandleFunc("/occupations", hctx.getAllOccupations)
 	router.HandleFunc("/occupation/code/{onetcode}", hctx.getOccupationById)
 	router.HandleFunc("/occupation/title/{title}", hctx.getOccupationsByTitle)
+	router.HandleFunc("/user/{id}", hctx.getUserById)
 
 	// serve the API at :5000 port
 	log.Fatal(http.ListenAndServe(":5000", router))
