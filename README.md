@@ -1,6 +1,8 @@
 REST API
 ============
 
+![Go](https://github.com/vocationnations/api/workflows/Go/badge.svg?branch=master)
+
 # Table of contents
 
 1. [Introduction](#1-introduction)
