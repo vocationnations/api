@@ -48,9 +48,7 @@ func GetOccupationById(db *sql.DB, onetcode string) Occupation {
 			fmt.Println("Cannot scan appropriate rows, err: ", err)
 		}
 
-		if _occupation.Onetcode == onetcode {
-			return _occupation
-		}
+		return _occupation
 	}
 	return Occupation{}
 }
