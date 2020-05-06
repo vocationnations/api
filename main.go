@@ -98,7 +98,7 @@ func handleRequests(hctx *HandlerContext) {
 	router.HandleFunc("/user/{id}", hctx.getUserById)
 
 	// serve the API at :5000 port
-	log.Fatal(http.ListenAndServe(":5000", router))
+	log.Fatal(http.ListenAndServe("0.0.0.0:5000", router))
 }
 
 func main() {
