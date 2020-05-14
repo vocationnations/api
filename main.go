@@ -34,7 +34,7 @@ func NewHandlerContext(database *sql.DB) *HandlerContext {
 // API handler for endpoint: /
 func (ctx *HandlerContext) getMainEndpoint(w http.ResponseWriter, _ *http.Request) {
 	if _, err := fmt.Fprintf(w, "Welcome to VocationNation API v.0.0.1"); err != nil {
-		fmt.Println("cannot load the main endpoint, err: %v", err)
+		fmt.Println("cannot load the main endpoint, err: ", err)
 	}
 }
 
