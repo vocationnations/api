@@ -10,14 +10,13 @@ import (
 	"github.com/gorilla/mux"
 	_ "github.com/mattn/go-sqlite3"
 
-	"./src/occupation"
-	"./src/user"
+	"github.com/vocationnations/api/src/occupation"
+	"github.com/vocationnations/api/src/user"
 )
 
 const (
 	DBNAME = "./database/onet.db" // onet database
 )
-
 
 // Context which holds the database instance
 type HandlerContext struct {
@@ -33,12 +32,14 @@ func NewHandlerContext(database *sql.DB) *HandlerContext {
 }
 
 // API handler for endpoint: /
-func (ctx *HandlerContext) getMainEndpoint(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to VocationNation API v.0.0.1")
+func (ctx *HandlerContext) getMainEndpoint(w http.ResponseWriter, _ *http.Request) {
+	if _, err := fmt.Fprintf(w, "Welcome to VocationNation API v.0.0.1"); err != nil {
+		fmt.Println("cannot load the main endpoint, err: %v", err)
+	}
 }
 
 // API handler for endpoint: /occupations
-func (ctx *HandlerContext) getAllOccupations(w http.ResponseWriter, r *http.Request) {
+func (ctx *HandlerContext) getAllOccupations(w http.ResponseWriter, _ *http.Request) {
 	var AllOccupations []occupation.Occupation
 	AllOccupations = occupation.GetOccupations(ctx.db)
 	err := json.NewEncoder(w).Encode(AllOccupations)
@@ -71,7 +72,7 @@ func (ctx *HandlerContext) getOccupationsByTitle(w http.ResponseWriter, r *http.
 	}
 }
 
-func (ctx *HandlerContext) getUserById(w http.ResponseWriter, r *http.Request){
+func (ctx *HandlerContext) getUserById(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	key := vars["id"]
 
@@ -80,7 +81,6 @@ func (ctx *HandlerContext) getUserById(w http.ResponseWriter, r *http.Request){
 	if err != nil {
 		fmt.Println("JSON encoding failed, err: ", err)
 	}
-
 
 }
 
@@ -98,6 +98,8 @@ func handleRequests(hctx *HandlerContext) {
 	router.HandleFunc("/user/{id}", hctx.getUserById)
 
 	// serve the API at :5000 port
+	fmt.Println("VocationNations API v0.1")
+	fmt.Println("Serving at: http://0.0.0.0:5000")
 	log.Fatal(http.ListenAndServe("0.0.0.0:5000", router))
 }
 
