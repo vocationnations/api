@@ -32,3 +32,32 @@ type Work struct {
 	Start        string `json:"start"`
 	End          string `json:"end"`
 }
+
+// RangeQuestion defines the structure of the questions to which range of answer is provided
+type RangeQuestion struct {
+	Id string `json:"id"`
+	QuestionString string `json:"question"`
+	StartRange string `json:"start_range"`
+	EndRange string `json:"end_range"`
+	Answer string `json:"answer"`
+	Category string `json:"category"`
+	Subcategory string `json:"subcategory"`
+}
+
+// NumericalQuestion defines the structure of questions to which numerical answer is provided
+type NumericalQuestion struct {
+	Id string `json:"id"`
+	QuestionString string `json:"question"`
+	Answer int `json:"answer"`
+	Category string `json:"cateogry"`
+	Subcategory string `json:"subcategory"`
+}
+
+// StringQuestion defines the structure of question to which string answer is provided
+type StringQuestion struct {
+	Id string `json:"id"`
+	QuestionString string `json:"question"`
+	Answer int `json:"answer"`
+	Category string `json:"category"`
+	Subcategory string `json:"subcategory"`
+}
