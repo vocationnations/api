@@ -6,11 +6,29 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/vocationnations/api/helpter"
 	"github.com/vocationnations/api/model"
+	"log"
 	"net/http"
 )
 
 // GetMain serves the main route with pattern "/"
 func GetMain(w http.ResponseWriter, _ *http.Request, ctx helpter.AppContext) error {
+	query := `SELECT * FROM Users`
+	rows, err := ctx.DB.Query(query)
+	if err != nil {
+		fmt.Errorf("cannot run query: %s : %v", query, err)
+	}
+	for rows.Next() {
+		var name string
+		var usertype string
+		var id string
+		if err := rows.Scan(&id, &name, &usertype); err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%s and %s %s\n", id, name, usertype)
+	}
+	if err := rows.Err(); err != nil {
+		log.Fatal(err)
+	}
 	if _, err := fmt.Fprintf(w, "Welcome to VocationNation API"); err != nil {
 		return fmt.Errorf("cannot load the main route, err: %v", err)
 	}
