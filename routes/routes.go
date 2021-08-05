@@ -2,7 +2,11 @@ package routes
 
 import (
 	"github.com/vocationnations/api/handler"
+	"github.com/vocationnations/api/handler/category"
+	"github.com/vocationnations/api/handler/skill"
+	"github.com/vocationnations/api/handler/statement"
 	"github.com/vocationnations/api/handler/user"
+	"github.com/vocationnations/api/handler/userentry"
 )
 
 // Route is the model for the route setup
@@ -37,20 +41,20 @@ var AllRoutes = Routes{
 	Route{"GetUser", GET, "/get_user/{id}", user.GetUser},
 	//
 	//// 2. CategoryStatement
-	//Route{ "GetCultureStatements", GET, "/get_culture_statements", handler.GetCultureStatements},
-	//Route{ "GetCultureStatement", GET, "/get_culture_statement/{id}", handler.GetCultureStatement},
+	Route{ "GetCultureStatements", GET, "/get_culture_statements", statement.GetCultureStatements},
+	Route{ "GetCultureStatement", GET, "/get_culture_statement/{id}", statement.GetCultureStatement},
 	//
 	//// 3. CultureCategory
-	//Route{ "GetCultureCategories", GET, "/get_culture_categories", handler.GetCultureCategories},
-	//Route{ "GetCultureCategory", GET, "/get_culture_category/{id}", handler.GetCultureCategory},
+	Route{ "GetCultureCategories", GET, "/get_culture_categories", category.GetCultureCategories},
+	Route{ "GetCultureCategory", GET, "/get_culture_category/{id}", category.GetCultureCategory},
 	//
 	//// 4. Skill
-	//Route{"GetSkills", GET, "/get_skills", handler.GetSkills},
-	//Route{"GetSkill", GET, "/get_skill/{id}", handler.GetSkill},
+	Route{"GetSkills", GET, "/get_skills", skill.GetSkills},
+	Route{"GetSkill", GET, "/get_skill/{id}", skill.GetSkill},
 	//
 	//// 5. UserEntry
-	//Route{"GetUserEntries", GET, "/get_user_entries", handler.GetUserEntries},
-	//Route{"GetUserEntry", GET, "/get_user_entry/{id}", handler.GetUserEntry},
+	Route{"GetUserEntries", GET, "/get_user_entries", userentry.GetUserEntries},
+	Route{"GetUserEntry", GET, "/get_user_entry/{id}", userentry.GetUserEntry},
 	//
 	//// POST
 	//// 1. Users
