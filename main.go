@@ -5,7 +5,7 @@ import (
 	"fmt"
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/vocationnations/api/helpter"
+	"github.com/vocationnations/api/helper"
 )
 
 const (
@@ -28,7 +28,7 @@ func main() {
 		fmt.Println("Database cannot connect, err:", err)
 	}
 
-	ctx := helpter.AppContext{
+	ctx := helper.AppContext{
 		DB:      db,
 		Env:     CURRENT_ENV,
 		Version: "v0.1",

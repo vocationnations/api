@@ -4,18 +4,18 @@ import (
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
 	"github.com/unrolled/secure"
-	"github.com/vocationnations/api/helpter"
+	"github.com/vocationnations/api/helper"
 	"github.com/vocationnations/api/routes"
 	"log"
 	"net/http"
 )
 
 // StartAPIServer creates and serves the API on the newly created server
-func StartAPIServer(ctx helpter.AppContext) {
+func StartAPIServer(ctx helper.AppContext) {
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range routes.AllRoutes {
 		var handler http.Handler
-		handler = helpter.MakeHandler(ctx, route.Handler)
+		handler = helper.MakeHandler(ctx, route.Handler)
 		router.
 			Methods(route.Method).
 			Path(route.Pattern).
@@ -25,7 +25,7 @@ func StartAPIServer(ctx helpter.AppContext) {
 
 	// security
 	var isDevelopment = false
-	if ctx.Env == helpter.ENV_LOCAL {
+	if ctx.Env == helper.ENV_LOCAL {
 		isDevelopment = true
 	}
 	secureMiddleware := secure.New(secure.Options{
@@ -40,7 +40,7 @@ func StartAPIServer(ctx helpter.AppContext) {
 	n.Use(negroni.HandlerFunc(secureMiddleware.HandlerFuncWithNext))
 	n.UseHandler(router)
 	log.Println("===> Starting app (v" + ctx.Version + ") on port " + ctx.Port + " in " + ctx.Env + " mode.")
-	if ctx.Env == helpter.ENV_LOCAL {
+	if ctx.Env == helper.ENV_LOCAL {
 		n.Run("localhost:" + ctx.Port)
 	} else {
 		n.Run(":" + ctx.Port)
