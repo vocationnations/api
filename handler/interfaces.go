@@ -5,4 +5,4 @@ import (
 	"net/http"
 )
 
-type HandlerFunc func(http.ResponseWriter, *http.Request, helper.AppContext) error
+type Func func(http.ResponseWriter, *http.Request, helper.AppContext) error

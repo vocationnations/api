@@ -1,30 +1,28 @@
 package helper
 
 import (
-	"database/sql"
+	"fmt"
+	"github.com/vocationnations/api/database"
 	"net/http"
 )
 
-const (
-	ENV_LOCAL = "local"
-)
+const ENVLocal = "local"
 
 type AppContext struct {
-	// DB is the database that is used by the application
-	DB *sql.DB
-	// Env will cause the AllowedHosts, SSLRedirect, and STSSeconds/STSIncludeSubdomains options to be ignored during development env.
-	Env string
-	// Version defines the API version
+	DB      database.Database
 	Version string
-	// Port defines the port at which the API serves
-	Port string
+	Port    string
+	Env     string
 }
 
-// makeHandler allows us to pass an environment struct to our handlers, without resorting to global
-// variables. It accepts an environment (Env) struct and our own handler function. It returns
+// MakeHandler makeHandler allows us to pass the API context. It returns
 // a function of the type http.HandlerFunc so can be passed on to the HandlerFunc.
 func MakeHandler(ctx AppContext, fn func(http.ResponseWriter, *http.Request, AppContext) error) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fn(w, r, ctx)
+		err := fn(w, r, ctx)
+		if err != nil {
+			_, _ = fmt.Fprintf(w, "ERROR: %s", err)
+			return
+		}
 	}
 }

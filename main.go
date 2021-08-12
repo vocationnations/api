@@ -1,38 +1,39 @@
 package main
 
 import (
-	"database/sql"
-	"fmt"
-	_ "github.com/lib/pq"
-	_ "github.com/mattn/go-sqlite3"
+	"github.com/joho/godotenv"
+	"github.com/vocationnations/api/database"
 	"github.com/vocationnations/api/helper"
-)
-
-const (
-	DBNAME      = "postgres" // vns-aws-rds-postgres
-	DB_USER     = "postgres"
-	CURRENT_ENV = "local"
-	HOST        = "vns-poc.cvnvlcppwmn7.us-west-2.rds.amazonaws.com"
-	DB_PORT     = 5432
-	API_PORT    = "5000"
-	PASSWORD    = "Vnspoc090621251"
+	"github.com/vocationnations/api/server"
+	"log"
+	"os"
 )
 
 func main() {
 
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		HOST, DB_PORT, DB_USER, PASSWORD, DBNAME)
-
-	db, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		fmt.Println("Database cannot connect, err:", err)
+	// load the .env file
+	if err := godotenv.Load(); err != nil {
+		log.Fatalln("ERROR: Please create .env file with appropriate variables")
 	}
+
+	// load all the relevant variables
+	var (
+		DBName  = os.Getenv("DB_NAME")
+		DBPort  = os.Getenv("DB_PORT")
+		DBHost  = os.Getenv("DB_HOST")
+		DBUser  = os.Getenv("DB_USER")
+		DBPass  = os.Getenv("DB_PASS")
+		APIPort = os.Getenv("API_PORT")
+	)
+
+	//initiate a new database connection
+	db := database.NewConnection(DBName, DBUser, DBHost, DBPort, DBPass)
 
 	ctx := helper.AppContext{
 		DB:      db,
-		Env:     CURRENT_ENV,
 		Version: "v0.1",
-		Port:    API_PORT,
+		Env:     "local",
+		Port:    APIPort,
 	}
-	StartAPIServer(ctx)
+	server.StartAPIServer(ctx)
 }

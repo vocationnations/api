@@ -1,4 +1,4 @@
-package category
+package category_handler
 
 import (
 	"fmt"
@@ -11,10 +11,10 @@ func GetCultureCategories(w http.ResponseWriter, r *http.Request, ctx helper.App
 	if err != nil {
 		return err
 	}
-	return nil;
+	return nil
 }
 
 func GetCultureCategory(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
 	fmt.Fprintf(w, "IMPLEMENT ME!!")
-	return nil;
+	return nil
 }
