@@ -38,8 +38,8 @@ var AllRoutes = Routes{
 	Route{"GetUsers", GET, "/get_users", user_handler.GetUsers},
 	Route{"GetUser", GET, "/get_user/{id}", user_handler.GetUser},
 
-	Route{"GetCultureStatements", GET, "/get_culture_statements", statement_handler.GetCultureStatements},
-	Route{"GetCultureStatement", GET, "/get_culture_statement/{id}", statement_handler.GetCultureStatement},
+	Route{"GetCategoryStatements", GET, "/get_category_statements", statement_handler.GetCategoryStatements},
+	Route{"GetCategoryStatement", GET, "/get_category_statement/{id}", statement_handler.GetCategoryStatement},
 
 	Route{"GetCultureCategories", GET, "/get_culture_categories", category_handler.GetCultureCategories},
 	Route{"GetCultureCategory", GET, "/get_culture_category/{id}", category_handler.GetCultureCategory},

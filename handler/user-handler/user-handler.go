@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-func GetUsers(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
+func GetUsers(w http.ResponseWriter, _ *http.Request, ctx helper.AppContext) error {
 
 	var db = ctx.DB.GetDatabase()
 
@@ -49,7 +49,6 @@ func GetUser(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) erro
 	if err := db.Model(usr).WherePK().Select(); err != nil {
 		return fmt.Errorf("user cannot be retrieved, err: %v", err)
 	}
-	fmt.Println(usr)
 	if err := json.NewEncoder(w).Encode(usr); err != nil {
 		return fmt.Errorf("cannot encode user, err: %v", err)
 	}
