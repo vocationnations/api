@@ -20,5 +20,5 @@ type CategoryStatement struct {
 }
 
 func (cs CategoryStatement) String() string {
-	return fmt.Sprintf("ID: <%d> Domain: <%s> Statement: <%s> QuestionId <%d>", cs.Id, cs.Domain, cs.Statement, cs.QuestionId)
+	return fmt.Sprintf("ID: <%d> Domain: <%s> Statement: <%s> QuestionId: <%d>", cs.Id, cs.Domain, cs.Statement, cs.QuestionId)
 }
