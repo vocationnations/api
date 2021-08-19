@@ -54,3 +54,22 @@ func GetUser(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) erro
 	}
 	return nil
 }
+
+func CreateUser(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
+
+	var usr model.User
+	db := ctx.DB.GetDatabase()
+
+	if err := json.NewDecoder(r.Body).Decode(&usr); err != nil {
+		return fmt.Errorf("cannot decode the body for user, err: %v", err)
+	}
+
+	if _, err := db.Model(&usr).Insert(); err != nil {
+		return fmt.Errorf("cannot insert user to database, err: %v", err)
+	}
+
+	if err := json.NewEncoder(w).Encode(&usr); err != nil {
+		return fmt.Errorf("cannot encode the user for printing, err: %v", err)
+	}
+	return nil
+}

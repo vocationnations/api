@@ -50,11 +50,8 @@ var AllRoutes = Routes{
 	Route{"GetUserEntries", GET, "/get_user_entries", userentry_handler.GetUserEntries},
 	Route{"GetUserEntry", GET, "/get_user_entry/{id}", userentry_handler.GetUserEntry},
 
-	//
-	//// POST
-	//// 1. Users
-	//Route{"AddUser", POST, "/add_user", handler.AddUser},
-	//
+	Route{"CreateUser", POST, "/create_user", user_handler.CreateUser},
+
 	//// 2. CategoryStatement
 	//Route{"AddCategoryStatement", POST, "/add_category_statement", handler.AddCategoryStatement},
 	//

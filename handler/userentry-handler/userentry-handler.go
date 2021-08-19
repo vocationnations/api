@@ -11,7 +11,7 @@ import (
 )
 
 func GetUserEntries(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
-	var db = ctx.DB.GetDatabase()
+	db := ctx.DB.GetDatabase()
 
 	var uentries []model.UserEntry
 
