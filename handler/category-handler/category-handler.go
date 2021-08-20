@@ -52,3 +52,23 @@ func GetCultureCategory(w http.ResponseWriter, r *http.Request, ctx helper.AppCo
 	}
 	return nil
 }
+
+
+func CreateCultureCategory(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
+
+	var ctgry model.CultureCategory
+	db := ctx.DB.GetDatabase()
+
+	if err := json.NewDecoder(r.Body).Decode(&ctgry); err != nil {
+		return fmt.Errorf("cannot decode the body for culture category, err: %v", err)
+	}
+
+	if _, err := db.Model(&ctgry).Insert(); err != nil {
+		return fmt.Errorf("cannot insert culture category to database, err: %v", err)
+	}
+
+	if err := json.NewEncoder(w).Encode(&ctgry); err != nil {
+		return fmt.Errorf("cannot encode the culture category for printing, err: %v", err)
+	}
+	return nil
+}

@@ -12,13 +12,15 @@ func TestUserEntry_String(t *testing.T) {
 		name        string
 		id          int
 		date        time.Time
+		userId		int
 		expectedStr string
 	}{
 		{
 			name:        "test returns expected string with proper data",
 			id:          1,
 			date:        time.Date(2009, 11, 17, 20, 34, 58, 651387237, time.UTC),
-			expectedStr: "ID: <1> Date: <2009-11-17 20:34:58.651387237 +0000 UTC>",
+			userId:		3,
+			expectedStr: "ID: <1> Date: <2009-11-17 20:34:58.651387237 +0000 UTC> UserId: <3>",
 		},
 	}
 

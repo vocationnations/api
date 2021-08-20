@@ -54,3 +54,23 @@ func GetSkill(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) err
 	}
 	return nil
 }
+
+
+func CreateSkill(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
+
+	var skill model.Skill
+	db := ctx.DB.GetDatabase()
+
+	if err := json.NewDecoder(r.Body).Decode(&skill); err != nil {
+		return fmt.Errorf("cannot decode the body for skill, err: %v", err)
+	}
+
+	if _, err := db.Model(&skill).Insert(); err != nil {
+		return fmt.Errorf("cannot insert skill to database, err: %v", err)
+	}
+
+	if err := json.NewEncoder(w).Encode(&skill); err != nil {
+		return fmt.Errorf("cannot encode the skill for printing, err: %v", err)
+	}
+	return nil
+}

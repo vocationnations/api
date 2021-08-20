@@ -11,7 +11,7 @@ const (
 	Market    CultureDomain = "Market"
 )
 
-type CategoryStatement struct {
+type Statement struct {
 	tableName  struct{}      `sql:"category_statements"`
 	Id         int           `json:"id"`
 	Domain     CultureDomain `json:"domain"`
@@ -19,6 +19,6 @@ type CategoryStatement struct {
 	QuestionId int           `json:"question_id"`
 }
 
-func (cs CategoryStatement) String() string {
+func (cs Statement) String() string {
 	return fmt.Sprintf("ID: <%d> Domain: <%s> Statement: <%s> QuestionId: <%d>", cs.Id, cs.Domain, cs.Statement, cs.QuestionId)
 }

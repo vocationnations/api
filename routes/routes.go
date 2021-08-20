@@ -38,8 +38,8 @@ var AllRoutes = Routes{
 	Route{"GetUsers", GET, "/get_users", user_handler.GetUsers},
 	Route{"GetUser", GET, "/get_user/{id}", user_handler.GetUser},
 
-	Route{"GetCategoryStatements", GET, "/get_category_statements", statement_handler.GetCategoryStatements},
-	Route{"GetCategoryStatement", GET, "/get_category_statement/{id}", statement_handler.GetCategoryStatement},
+	Route{"GetCategoryStatements", GET, "/get_category_statements", statement_handler.GetStatements},
+	Route{"GetCategoryStatement", GET, "/get_category_statement/{id}", statement_handler.GetStatement},
 
 	Route{"GetCultureCategories", GET, "/get_culture_categories", category_handler.GetCultureCategories},
 	Route{"GetCultureCategory", GET, "/get_culture_category/{id}", category_handler.GetCultureCategory},
@@ -52,13 +52,16 @@ var AllRoutes = Routes{
 
 	Route{"CreateUser", POST, "/create_user", user_handler.CreateUser},
 
-	//// 2. CategoryStatement
-	//Route{"AddCategoryStatement", POST, "/add_category_statement", handler.AddCategoryStatement},
+	//// 2. Statement
+	Route{"CreateCategoryStatement", POST, "/create_category_statement", statement_handler.CreateStatement},
 	//
 	//// 3. CultureCategory
-	//Route{ "AddCultureCategory", POST, "/add_culture_category", handler.AddCultureCategory},
+	Route{ "CreateCultureCategory", POST, "/create_culture_category", category_handler.CreateCultureCategory},
 	//
 	//// 4. Skill
-	//Route{"AddSkills", POST, "/add_skills", handler.AddSkills},
+	Route{"CreateSkill", POST, "/create_skill", skill_handler.CreateSkill},
+	//
+	//// 5. User Entry
+	Route{"CreateUserEntry", POST, "/create_user_entry", userentry_handler.CreateUserEntry},
 
 }

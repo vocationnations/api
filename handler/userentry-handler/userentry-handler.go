@@ -53,3 +53,23 @@ func GetUserEntry(w http.ResponseWriter, r *http.Request, ctx helper.AppContext)
 	}
 	return nil
 }
+
+
+func CreateUserEntry(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
+
+	var uentry model.UserEntry
+	db := ctx.DB.GetDatabase()
+
+	if err := json.NewDecoder(r.Body).Decode(&uentry); err != nil {
+		return fmt.Errorf("cannot decode the body for user entry, err: %v", err)
+	}
+
+	if _, err := db.Model(&uentry).Insert(); err != nil {
+		return fmt.Errorf("cannot insert user entry to database, err: %v", err)
+	}
+
+	if err := json.NewEncoder(w).Encode(&uentry); err != nil {
+		return fmt.Errorf("cannot encode the user entry for printing, err: %v", err)
+	}
+	return nil
+}
