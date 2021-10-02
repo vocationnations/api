@@ -2,11 +2,12 @@ package routes
 
 import (
 	"github.com/vocationnations/api/handler"
-	"github.com/vocationnations/api/handler/category-handler"
-	"github.com/vocationnations/api/handler/skill-handler"
-	"github.com/vocationnations/api/handler/statement-handler"
-	"github.com/vocationnations/api/handler/user-handler"
-	"github.com/vocationnations/api/handler/userentry-handler"
+	"github.com/vocationnations/api/handler/onet/jobfamily-handler"
+	"github.com/vocationnations/api/handler/vns/category-handler"
+	"github.com/vocationnations/api/handler/vns/skill-handler"
+	"github.com/vocationnations/api/handler/vns/statement-handler"
+	"github.com/vocationnations/api/handler/vns/user-handler"
+	"github.com/vocationnations/api/handler/vns/userentry-handler"
 )
 
 // Route is the model for the route setup
@@ -63,5 +64,10 @@ var AllRoutes = Routes{
 	//
 	//// 5. User Entry
 	Route{"CreateUserEntry", POST, "/create_user_entry", userentry_handler.CreateUserEntry},
+
+
+
+	//// 5. Job families get
+	Route{"GetJobFamilies", GET, "/get_job_families", jobfamily_handler.GetJobFamilies},
 
 }
