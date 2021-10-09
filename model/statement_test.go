@@ -27,7 +27,7 @@ func TestCategoryStatement_String(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			stmt := &CategoryStatement{Statement: tt.statement, Domain: tt.domain, Id: tt.id, QuestionId: tt.questionId}
+			stmt := &Statement{Statement: tt.statement, Domain: tt.domain, Id: tt.id, QuestionId: tt.questionId}
 
 			assert.Equal(t, tt.expectedStr, fmt.Sprint(stmt))
 		})
