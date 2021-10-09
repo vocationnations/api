@@ -21,7 +21,7 @@ func GetCultureCategories(w http.ResponseWriter, r *http.Request, ctx helper.App
 	}
 
 	if len(cgres) == 0 {
-		_ = json.NewEncoder(w).Encode(&[]model.User{})
+		_ = json.NewEncoder(w).Encode(&[]model.CultureCategory{})
 	} else {
 		if err := json.NewEncoder(w).Encode(cgres); err != nil {
 			return fmt.Errorf("cannot encode users, err: %v", err)
