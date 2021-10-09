@@ -9,6 +9,8 @@ import (
 	"os"
 )
 
+const OnetApiBase = "https://services.onetcenter.org/ws/online/"
+
 func main() {
 
 	// load the .env file
@@ -30,10 +32,11 @@ func main() {
 	db := database.NewConnection(DBName, DBUser, DBHost, DBPort, DBPass)
 
 	ctx := helper.AppContext{
-		DB:      db,
-		Version: "v0.1",
-		Env:     "local",
-		Port:    APIPort,
+		DB:          db,
+		Version:     "v0.1",
+		Env:         "local",
+		Port:        APIPort,
+		OnetApiBase: OnetApiBase,
 	}
 	server.StartAPIServer(ctx)
 }

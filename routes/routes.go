@@ -24,11 +24,8 @@ type Route struct {
 
 // constants for the HTTP request method type
 const (
-	GET    = "GET"
-	PUT    = "PUT"
-	POST   = "POST"
-	PATCH  = "PATCH"
-	DELETE = "DELETE"
+	GET  = "GET"
+	POST = "POST"
 )
 
 // Routes is where main routes for the API are stored
@@ -57,7 +54,7 @@ var AllRoutes = Routes{
 	Route{"CreateCategoryStatement", POST, "/create_category_statement", statement_handler.CreateStatement},
 	//
 	//// 3. CultureCategory
-	Route{ "CreateCultureCategory", POST, "/create_culture_category", category_handler.CreateCultureCategory},
+	Route{"CreateCultureCategory", POST, "/create_culture_category", category_handler.CreateCultureCategory},
 	//
 	//// 4. Skill
 	Route{"CreateSkill", POST, "/create_skill", skill_handler.CreateSkill},
@@ -65,9 +62,21 @@ var AllRoutes = Routes{
 	//// 5. User Entry
 	Route{"CreateUserEntry", POST, "/create_user_entry", userentry_handler.CreateUserEntry},
 
-
-
-	//// 5. Job families get
+	//// 5. Job Families
 	Route{"GetJobFamilies", GET, "/get_job_families", jobfamily_handler.GetJobFamilies},
 
+	//// 6. GetOccupationsFromFamily
+	Route{"GetOccupationsFromFamily", GET, "/get_occupations_from_family/{id}", jobfamily_handler.GetOccupationsFromFamily},
+
+	//// 7.GetTasksByOccupation
+	Route{"GetTasksByOccupation", GET, "/get_tasks_by_occupation/{id}", jobfamily_handler.GetTasksByOccupation},
+
+	//// 8.GetSkillsByOccupation
+	Route{"GetSkillsByOccupation", GET, "/get_skill_by_occupatio/{id}", jobfamily_handler.GetSkillsByOccupation},
+
+	//// 9. GetKnowledgeSummaryByOccupation
+	Route{"GetKnowledgeSummaryByOccupation", GET, "/get_knowledge_summary_by_occupation/{id}", jobfamily_handler.GetKnowledgeSummaryByOccupation},
+
+	////10.GetEducationOccupation
+	Route{"GetEducationByOccupation", GET, "/get_education_by_occupation/{id}", jobfamily_handler.GetEducationOccupation},
 }
