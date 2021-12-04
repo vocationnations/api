@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/vocationnations/api/handler"
 	"github.com/vocationnations/api/handler/onet/jobfamily-handler"
+	"github.com/vocationnations/api/handler/onet/jobsearch-handler"
 	"github.com/vocationnations/api/handler/vns/category-handler"
 	"github.com/vocationnations/api/handler/vns/skill-handler"
 	"github.com/vocationnations/api/handler/vns/statement-handler"
@@ -79,4 +80,8 @@ var AllRoutes = Routes{
 
 	////10.GetEducationOccupation
 	Route{"GetEducationByOccupation", GET, "/get_education_by_occupation/{id}", jobfamily_handler.GetEducationOccupation},
+
+	////11.GetJobResults
+	Route{"GetJobResults", GET, "/get_job_by_keyword/{keyword}", jobsearch_handler.GetJobResults},
+
 }
