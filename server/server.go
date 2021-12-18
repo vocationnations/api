@@ -25,7 +25,7 @@ func StartAPIServer(ctx helper.AppContext) {
 
 	// security
 	var isDevelopment = false
-	if ctx.Env == helper.ENVLocal {
+	if ctx.VNConfiguration.Env == helper.ENVLocal {
 		isDevelopment = true
 	}
 	secureMiddleware := secure.New(secure.Options{
@@ -39,10 +39,10 @@ func StartAPIServer(ctx helper.AppContext) {
 	n.Use(negroni.NewLogger())
 	n.Use(negroni.HandlerFunc(secureMiddleware.HandlerFuncWithNext))
 	n.UseHandler(router)
-	log.Println("===> Starting app (v" + ctx.Version + ") on port " + ctx.Port + " in " + ctx.Env + " mode.")
-	if ctx.Env == helper.ENVLocal {
-		n.Run("localhost:" + ctx.Port)
+	log.Println("===> Starting app (v" + ctx.VNConfiguration.Version + ") on port " + ctx.VNConfiguration.APIPort + " in " + ctx.VNConfiguration.APIPort + " mode.")
+	if ctx.VNConfiguration.Env == helper.ENVLocal {
+		n.Run("localhost:" + ctx.VNConfiguration.APIPort)
 	} else {
-		n.Run(":" + ctx.Port)
+		n.Run(":" + ctx.VNConfiguration.APIPort)
 	}
 }

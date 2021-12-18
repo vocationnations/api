@@ -11,6 +11,7 @@ import (
 )
 
 const OnetService = "search?keyword="
+
 // returns top 20 most relevant jobs based on the keyword given
 func GetJobResults(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
 
@@ -20,12 +21,15 @@ func GetJobResults(w http.ResponseWriter, r *http.Request, ctx helper.AppContext
 	keywordStr := params["keyword"]
 
 	client := &http.Client{}
-	url := ctx.OnetApiBase + OnetService + keywordStr
+	url := ctx.VNConfiguration.ONET.Base + OnetService + keywordStr
+	authorization := ctx.VNConfiguration.ONET.AuthType + " " + ctx.VNConfiguration.ONET.AuthToken
+	contentType := ctx.VNConfiguration.ONET.ContentType
+	acceptType := ctx.VNConfiguration.ONET.AcceptType
 	fmt.Println(url)
 	r, _ = http.NewRequest(http.MethodGet, url, nil) // URL-encoded payload
-	r.Header.Add("Authorization", "Basic Y2FyZWVyY3VwaWQ6MzUzN3RuYg==")
-	r.Header.Add("Content-Type", "application/vnd.org.onetcenter.online.search.occupations+json")
-	r.Header.Add("Accept", "application/json")
+	r.Header.Add("Authorization", authorization)
+	r.Header.Add("Content-Type", contentType)
+	r.Header.Add("Accept", acceptType)
 
 	resp, _ := client.Do(r)
 	body, err := ioutil.ReadAll(resp.Body)
