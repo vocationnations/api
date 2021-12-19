@@ -15,12 +15,15 @@ const OnetService = "job_families"
 func GetJobFamilies(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
 
 	client := &http.Client{}
-	url := ctx.OnetApiBase + OnetService + "/"
+	url := ctx.VNConfiguration.ONET.Base + OnetService + "/"
+	authorization := ctx.VNConfiguration.ONET.AuthType + " " + ctx.VNConfiguration.ONET.AuthToken
+	contentType := ctx.VNConfiguration.ONET.ContentType
+	acceptType := ctx.VNConfiguration.ONET.AcceptType
 	fmt.Println(url)
 	r, _ = http.NewRequest(http.MethodGet, url, nil) // URL-encoded payload
-	r.Header.Add("Authorization", "Basic Y2FyZWVyY3VwaWQ6MzUzN3RuYg==")
-	r.Header.Add("Content-Type", "application/vnd.org.onetcenter.online.job_families+json")
-	r.Header.Add("Accept", "application/json")
+	r.Header.Add("Authorization", authorization)
+	r.Header.Add("Content-Type", contentType)
+	r.Header.Add("Accept", acceptType)
 
 	resp, _ := client.Do(r)
 	body, err := ioutil.ReadAll(resp.Body)
@@ -49,12 +52,15 @@ func GetOccupationsFromFamily(w http.ResponseWriter, r *http.Request, ctx helper
 	idStr := params["id"]
 
 	client := &http.Client{}
-	url := ctx.OnetApiBase + OnetService + "/" + idStr
+	url := ctx.VNConfiguration.ONET.Base + OnetService + "/" + idStr
+	authorization := ctx.VNConfiguration.ONET.AuthType + " " + ctx.VNConfiguration.ONET.AuthToken
+	contentType := ctx.VNConfiguration.ONET.ContentType
+	acceptType := ctx.VNConfiguration.ONET.AcceptType
 	fmt.Println(url)
 	r, _ = http.NewRequest(http.MethodGet, url, nil) // URL-encoded payload
-	r.Header.Add("Authorization", "Basic Y2FyZWVyY3VwaWQ6MzUzN3RuYg==")
-	r.Header.Add("Content-Type", "application/vnd.org.onetcenter.online.job_families+json")
-	r.Header.Add("Accept", "application/json")
+	r.Header.Add("Authorization", authorization)
+	r.Header.Add("Content-Type", contentType)
+	r.Header.Add("Accept", acceptType)
 
 	resp, _ := client.Do(r)
 	body, err := ioutil.ReadAll(resp.Body)

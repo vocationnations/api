@@ -9,11 +9,8 @@ import (
 const ENVLocal = "local"
 
 type AppContext struct {
-	DB          database.Database
-	Version     string
-	Port        string
-	Env         string
-	OnetApiBase string
+	VNConfiguration VNConfiguration
+	DB              database.Database
 }
 
 // MakeHandler makeHandler allows us to pass the API context. It returns
