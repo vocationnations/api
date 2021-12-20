@@ -80,7 +80,37 @@ func GetTasksByOccupation(http.ResponseWriter, *http.Request, helper.AppContext)
 	return nil
 }
 
-func GetSkillsByOccupation(http.ResponseWriter, *http.Request, helper.AppContext) error {
+func GetSkillsByOccupation(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
+	params := mux.Vars(r)
+
+	// get the id from the url
+	idStr := params["id"]
+
+	client := &http.Client{}
+	url := ctx.OnetApiBase + "occupations/" + idStr + "/summary/skills"
+	fmt.Println(url)
+	r, _ = http.NewRequest(http.MethodGet, url, nil) // URL-encoded payload
+	r.Header.Add("Authorization", "Basic Y2FyZWVyY3VwaWQ6MzUzN3RuYg==")
+	r.Header.Add("Content-Type", "Content-Type: application/vnd.org.onetcenter.online.occupation.skills+json")
+	r.Header.Add("Accept", "application/json")
+
+	resp, _ := client.Do(r)
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("failed to read the body, err: %v", err)
+	}
+
+	occupationSkills := &model.OccupationSkills{}
+	// casting it to a string removes all the weird spaces, escapes the quotes, etc.
+	sb := string(body)
+	fmt.Println(sb)
+	if err := json.Unmarshal([]byte(sb), &occupationSkills); err != nil {
+		return err
+	}
+
+	if err := json.NewEncoder(w).Encode(occupationSkills); err != nil {
+		return fmt.Errorf("cannot write the json, err: %v", err)
+	}
 	return nil
 }
 
