@@ -91,12 +91,12 @@ func GetSkillsByOccupation(w http.ResponseWriter, r *http.Request, ctx helper.Ap
 
 	// get the id from the url
 	idStr := params["id"]
-
+	authorization := ctx.VNConfiguration.ONET.AuthType + " " + ctx.VNConfiguration.ONET.AuthToken
 	client := &http.Client{}
-	url := ctx.OnetApiBase + "occupations/" + idStr + "/summary/skills"
+	url := ctx.VNConfiguration.ONET.Base + "occupations/" + idStr + "/summary/skills"
 	fmt.Println(url)
 	r, _ = http.NewRequest(http.MethodGet, url, nil) // URL-encoded payload
-	r.Header.Add("Authorization", "Basic Y2FyZWVyY3VwaWQ6MzUzN3RuYg==")
+	r.Header.Add("Authorization", authorization)
 	r.Header.Add("Content-Type", "Content-Type: application/vnd.org.onetcenter.online.occupation.skills+json")
 	r.Header.Add("Accept", "application/json")
 

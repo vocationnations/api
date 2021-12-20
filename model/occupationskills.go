@@ -17,7 +17,7 @@ type Element struct {
 }
 
 func (s OccupationSkills) String() string {
-	return fmt.Sprintf("Code: <%s> Report: <%s> Display: <%d> Elements: <%d>", s.Code, s.Report, s.Display, s.Elements)
+	return fmt.Sprintf("Code: <%s> Report: <%s> Display: <%s> Elements: <%s>", s.Code, s.Report, s.Display, s.Elements)
 }
 
 
