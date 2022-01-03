@@ -73,7 +73,7 @@ var AllRoutes = Routes{
 	Route{"GetTasksByOccupation", GET, "/get_tasks_by_occupation/{id}", jobfamily_handler.GetTasksByOccupation},
 
 	//// 8.GetSkillsByOccupation
-	Route{"GetSkillsByOccupation", GET, "/get_skill_by_occupatio/{id}", jobfamily_handler.GetSkillsByOccupation},
+	Route{"GetSkillsByOccupation", GET, "/get_skills_by_occupation/{id}", jobfamily_handler.GetSkillsByOccupation},
 
 	//// 9. GetKnowledgeSummaryByOccupation
 	Route{"GetKnowledgeSummaryByOccupation", GET, "/get_knowledge_summary_by_occupation/{id}", jobfamily_handler.GetKnowledgeSummaryByOccupation},
