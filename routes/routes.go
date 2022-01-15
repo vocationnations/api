@@ -27,6 +27,7 @@ type Route struct {
 const (
 	GET  = "GET"
 	POST = "POST"
+	UPDATE = "UPDATE"
 )
 
 // Routes is where main routes for the API are stored
@@ -36,6 +37,13 @@ var AllRoutes = Routes{
 
 	Route{"GetUsers", GET, "/get_users", user_handler.GetUsers},
 	Route{"GetUser", GET, "/get_user/{id}", user_handler.GetUser},
+	Route{"GetUserName", GET, "/get_username/{id}", user_handler.GetUserName},
+	Route{"GetUserEmail", GET, "/get_user_email/{id}", user_handler.GetUserEmail},
+
+	Route{"SetUser", POST, "/set_user", user_handler.SetUser},
+	Route{"SetUserName", UPDATE, "/set_username_by_id", user_handler.SetUserName},
+	Route{"SetUserEmail", UPDATE, "/set_user_email_by_id", user_handler.SetUserEmail},
+
 
 	Route{"GetCategoryStatements", GET, "/get_category_statements", statement_handler.GetStatements},
 	Route{"GetCategoryStatement", GET, "/get_category_statement/{id}", statement_handler.GetStatement},
@@ -49,7 +57,6 @@ var AllRoutes = Routes{
 	Route{"GetUserEntries", GET, "/get_user_entries", userentry_handler.GetUserEntries},
 	Route{"GetUserEntry", GET, "/get_user_entry/{id}", userentry_handler.GetUserEntry},
 
-	Route{"CreateUser", POST, "/create_user", user_handler.CreateUser},
 
 	//// 2. Statement
 	Route{"CreateCategoryStatement", POST, "/create_category_statement", statement_handler.CreateStatement},
