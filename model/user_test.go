@@ -8,24 +8,24 @@ import (
 
 func TestUser_String(t *testing.T) {
 	tests := []struct {
-		name        string
+		testname        string
 		id          int
-		username    string
-		usertype    UserType
+		name    string
+		email    string
 		expectedStr string
 	}{
 		{
-			name:        "test returns expected string with proper data",
+			testname:        "test returns expected string with proper data",
 			id:          1,
-			username:    "testuser1",
-			usertype:    "Admin",
-			expectedStr: "ID: <1> Username: <testuser1> UserType: <Admin>",
+			name:    "testuser1",
+			email:    "testuser1@vocationations.com",
+			expectedStr: "ID: <1> Name: <testuser1> Email: <testuser1@vocationations.com>",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			usr := &User{Id: tt.id, Username: tt.username, UserType: tt.usertype}
+			usr := &User{Id: tt.id, Name: tt.name, Email: tt.email}
 
 			assert.Equal(t, tt.expectedStr, fmt.Sprint(usr))
 		})

@@ -4,19 +4,14 @@ import "fmt"
 
 type UserType string
 
-const (
-	Admin     UserType = "Admin"
-	JobSeeker UserType = "JobSeeker"
-	Employer  UserType = "Employer"
-)
 
 type User struct {
 	tableName struct{} `sql:"users"`
 	Id        int      `json:"id"`
-	Username  string   `json:"username"`
-	UserType  UserType `json:"usertype"`
+	Name  string   `json:"name"`
+	Email  string   `json:"email"`
 }
 
 func (u User) String() string {
-	return fmt.Sprintf("ID: <%d> Username: <%s> UserType: <%s>", u.Id, u.Username, u.UserType)
+	return fmt.Sprintf("ID: <%d> Name: <%s> Email: <%s>", u.Id, u.Name, u.Email)
 }
