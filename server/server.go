@@ -3,6 +3,7 @@ package server
 import (
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 	"github.com/unrolled/secure"
 	"github.com/vocationnations/api/helper"
 	"github.com/vocationnations/api/routes"
@@ -23,7 +24,7 @@ func StartAPIServer(ctx helper.AppContext) {
 			Handler(handler)
 	}
 
-	// security
+	//security
 	var isDevelopment = false
 	if ctx.VNConfiguration.Env == helper.ENVLocal {
 		isDevelopment = true
@@ -35,11 +36,18 @@ func StartAPIServer(ctx helper.AppContext) {
 		BrowserXssFilter:   true,          // If BrowserXssFilter is true, adds the X-XSS-Protection header with the value `1; mode=block`. Default is false.
 	})
 
+	// enable CORS
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"http://localhost:3000"},
+		Debug:          true,
+	})
+
 	n := negroni.New()
+	n.Use(c)
 	n.Use(negroni.NewLogger())
 	n.Use(negroni.HandlerFunc(secureMiddleware.HandlerFuncWithNext))
 	n.UseHandler(router)
-	log.Println("===> Starting app (v" + ctx.VNConfiguration.Version + ") on port " + ctx.VNConfiguration.APIPort + " in " + ctx.VNConfiguration.APIPort + " mode.")
+	log.Println("===> Starting app (v" + ctx.VNConfiguration.Version + ") on port " + ctx.VNConfiguration.APIPort + " in " + ctx.VNConfiguration.Env + " mode.")
 	if ctx.VNConfiguration.Env == helper.ENVLocal {
 		n.Run("localhost:" + ctx.VNConfiguration.APIPort)
 	} else {
