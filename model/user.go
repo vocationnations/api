@@ -5,7 +5,7 @@ import "fmt"
 type UserType string
 
 type User struct {
-	tableName struct{} `sql:"users"`
+	tableName struct{} `pg:"users"`
 	Id        int      `json:"id"`
 	Name      string   `json:"name"`
 	Email     string   `json:"email"`

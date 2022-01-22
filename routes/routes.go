@@ -73,6 +73,10 @@ var AllRoutes = Routes{
 	Route{"CreateCultureCategory", POST, "/create_culture_category", category_handler.CreateCultureCategory},
 	//
 	//// 4. Skill
+
+	Route{"GetUserSkills", GET, "/get_user_skills/{id}", skill_handler.GetUserSkills},
+	Route{"CreateUserSkill", POST, "/create_user_skill", skill_handler.CreateUserSkill},
+
 	Route{"CreateSkill", POST, "/create_skill", skill_handler.CreateSkill},
 	//
 	//// 5. User Entry
