@@ -2,8 +2,15 @@ package model
 
 import "fmt"
 
+type SkillManual struct {
+	tableName struct{} `pg:"user_skills_manual"`
+	Id int `json:"id"`
+	SkillName string `json:"skill_name"`
+	UserId int `json:"user_id"`
+}
+
 type Skill struct {
-	tableName     struct{} `sql:"skills"`
+	tableName     struct{} `pg:"skills"`
 	Id            int      `json:"id"`
 	Skill_name    string   `json:"skill_name"`
 	Value         int      `json:"value"`
