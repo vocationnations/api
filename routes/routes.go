@@ -5,6 +5,7 @@ import (
 	"github.com/vocationnations/api/handler/onet/jobfamily-handler"
 	"github.com/vocationnations/api/handler/onet/jobsearch-handler"
 	"github.com/vocationnations/api/handler/vns/category-handler"
+	"github.com/vocationnations/api/handler/vns/profession-handler"
 	"github.com/vocationnations/api/handler/vns/skill-handler"
 	"github.com/vocationnations/api/handler/vns/statement-handler"
 	"github.com/vocationnations/api/handler/vns/user-handler"
@@ -25,8 +26,8 @@ type Route struct {
 
 // constants for the HTTP request method type
 const (
-	GET  = "GET"
-	POST = "POST"
+	GET    = "GET"
+	POST   = "POST"
 	UPDATE = "UPDATE"
 )
 
@@ -35,6 +36,9 @@ type Routes []Route
 
 var AllRoutes = Routes{
 
+	//////////////////
+	// USERS TABLE //
+	/////////////////
 	Route{"GetUsers", GET, "/get_users", user_handler.GetUsers},
 	Route{"GetUser", GET, "/get_user/{id}", user_handler.GetUser},
 	Route{"GetUserName", GET, "/get_username/{id}", user_handler.GetUserName},
@@ -44,6 +48,11 @@ var AllRoutes = Routes{
 	Route{"SetUserName", UPDATE, "/set_username_by_id", user_handler.SetUserName},
 	Route{"SetUserEmail", UPDATE, "/set_user_email_by_id", user_handler.SetUserEmail},
 
+	///////////////////////
+	// PROFESSIONS TABLE //
+	//////////////////////
+	Route{"GetUserProfession", GET, "/get_user_professions/{id}", profession_handler.GetUserProfessions},
+	Route{"CreateUserProfession", POST, "/create_user_profession", profession_handler.CreateUserProfession},
 
 	Route{"GetCategoryStatements", GET, "/get_category_statements", statement_handler.GetStatements},
 	Route{"GetCategoryStatement", GET, "/get_category_statement/{id}", statement_handler.GetStatement},
@@ -56,7 +65,6 @@ var AllRoutes = Routes{
 
 	Route{"GetUserEntries", GET, "/get_user_entries", userentry_handler.GetUserEntries},
 	Route{"GetUserEntry", GET, "/get_user_entry/{id}", userentry_handler.GetUserEntry},
-
 
 	//// 2. Statement
 	Route{"CreateCategoryStatement", POST, "/create_category_statement", statement_handler.CreateStatement},
@@ -90,5 +98,4 @@ var AllRoutes = Routes{
 
 	////11.GetJobResults
 	Route{"GetJobResults", GET, "/get_job_by_keyword/{keyword}", jobsearch_handler.GetJobResults},
-
 }
