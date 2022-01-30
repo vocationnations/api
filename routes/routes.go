@@ -4,6 +4,7 @@ import (
 	"github.com/vocationnations/api/handler"
 	"github.com/vocationnations/api/handler/onet/jobfamily-handler"
 	"github.com/vocationnations/api/handler/onet/jobsearch-handler"
+	"github.com/vocationnations/api/handler/vns/culture_handler"
 	"github.com/vocationnations/api/handler/vns/profession-handler"
 	"github.com/vocationnations/api/handler/vns/skill-handler"
 	"github.com/vocationnations/api/handler/vns/user-handler"
@@ -57,27 +58,16 @@ var AllRoutes = Routes{
 	Route{"GetUserSkills", GET, "/get_user_skills/{id}", skill_handler.GetUserSkills},
 	Route{"CreateUserSkill", POST, "/create_user_skill", skill_handler.CreateUserSkill},
 	Route{"GetUserSkillsManual", GET, "/get_user_skills_manual/{id}", skill_handler.GetUserSkillsManual},
-	Route{"CreateUserSkillManual",POST,"/create_user_skill_manual",skill_handler.CreateUserSkillManual},
+	Route{"CreateUserSkillManual", POST, "/create_user_skill_manual", skill_handler.CreateUserSkillManual},
 
+	///////////////////
+	// CULTURE ENTRY //
+	//////////////////
+	Route{"CreateCultureEntry", POST, "/create_culture_entry", culture_handler.CreateCultureEntry},
 
-	//Route{"GetCategoryStatements", GET, "/get_category_statements", statement_handler.GetStatements},
-	//Route{"GetCategoryStatement", GET, "/get_category_statement/{id}", statement_handler.GetStatement},
-	//
-	//Route{"GetCultureCategories", GET, "/get_culture_categories", category_handler.GetCultureCategories},
-	//Route{"GetCultureCategory", GET, "/get_culture_category/{id}", category_handler.GetCultureCategory},
-	//
-	//Route{"GetUserEntries", GET, "/get_user_entries", userentry_handler.GetUserEntries},
-	//Route{"GetUserEntry", GET, "/get_user_entry/{id}", userentry_handler.GetUserEntry},
-	//
-	////// 2. Statement
-	//Route{"CreateCategoryStatement", POST, "/create_category_statement", statement_handler.CreateStatement},
-	////
-	////// 3. CultureCategory
-	//Route{"CreateCultureCategory", POST, "/create_culture_category", category_handler.CreateCultureCategory},
-	//
-	//
-	////// 5. User Entry
-	//Route{"CreateUserEntry", POST, "/create_user_entry", userentry_handler.CreateUserEntry},
+	/////////////////////////////
+	// ONET RELATED ENDPOINTS //
+	///////////////////////////
 
 	//// 5. Job Families
 	Route{"GetJobFamilies", GET, "/get_job_families", jobfamily_handler.GetJobFamilies},
