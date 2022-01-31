@@ -89,4 +89,8 @@ var AllRoutes = Routes{
 
 	////11.GetJobResults
 	Route{"GetJobResults", GET, "/get_job_by_keyword/{keyword}", jobsearch_handler.GetJobResults},
+
+	////12.GetTechnologySkillsByOccupation
+	Route{"GetTechnologySkillsByOccupation", GET, "/get_technology_skills_by_occupation/{id}", jobfamily_handler.GetTechnologySkillsByOccupation},
+
 }
