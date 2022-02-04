@@ -9,6 +9,7 @@ import (
 	"github.com/vocationnations/api/handler/vns/statement-handler"
 	"github.com/vocationnations/api/handler/vns/user-handler"
 	"github.com/vocationnations/api/handler/vns/userentry-handler"
+	"github.com/vocationnations/api/handler/vns/cultureEntry"
 )
 
 // Route is the model for the route setup
@@ -34,6 +35,7 @@ type Routes []Route
 
 var AllRoutes = Routes{
 
+    ///1. Get / Set User Original Setup OUTDATED from original setup?
 	Route{"GetUsers", GET, "/get_users", user_handler.GetUsers},
 	Route{"GetUser", GET, "/get_user/{id}", user_handler.GetUser},
 
@@ -83,5 +85,9 @@ var AllRoutes = Routes{
 
 	////11.GetJobResults
 	Route{"GetJobResults", GET, "/get_job_by_keyword/{keyword}", jobsearch_handler.GetJobResults},
+
+	////12. GetcultureEntry
+	Route{"GetCultureEntry", GET, "/get_culture_entries", cultureEntry_handler.GetcultureEntries}
+	Route{"GetcultureEntry", GET, "/get_culture_entry/{id}", cultureEntry_handler.GetcultureEntry}
 
 }
