@@ -4,6 +4,7 @@ import (
 	"github.com/vocationnations/api/handler"
 	"github.com/vocationnations/api/handler/onet/jobfamily-handler"
 	"github.com/vocationnations/api/handler/onet/jobsearch-handler"
+	climate_handler "github.com/vocationnations/api/handler/vns/climate-handler"
 	"github.com/vocationnations/api/handler/vns/culture_handler"
 	"github.com/vocationnations/api/handler/vns/profession-handler"
 	"github.com/vocationnations/api/handler/vns/skill-handler"
@@ -65,6 +66,16 @@ var AllRoutes = Routes{
 	//////////////////
 	Route{"CreateCultureEntry", POST, "/create_culture_entry", culture_handler.CreateCultureEntry},
 
+
+	  ///////////////////////
+	 // CLIMATE QUESTIONS //
+	///////////////////////
+	Route{"CreateClimateQuestion", POST, "/create_climate_question", climate_handler.CreateClimateQuestion},
+	Route{"GetClimateQuestions", GET, "/get_climate_questions", climate_handler.GetClimateQuestions},
+	Route{"CreateStep", POST, "/create_step", climate_handler.CreateStep},
+	Route{"GetStepsByQuestionId", GET, "/get_steps/{id}", climate_handler.GetStepsByQuestionId},
+	Route{"CreateClimateQuestionAnswer", POST, "/create_climate_question_answer", climate_handler.CreateClimateQuestionAnswer},
+
 	/////////////////////////////
 	// ONET RELATED ENDPOINTS //
 	///////////////////////////
@@ -89,4 +100,8 @@ var AllRoutes = Routes{
 
 	////11.GetJobResults
 	Route{"GetJobResults", GET, "/get_job_by_keyword/{keyword}", jobsearch_handler.GetJobResults},
+
+	////12.GetTechnologySkillsByOccupation
+	Route{"GetTechnologySkillsByOccupation", GET, "/get_technology_skills_by_occupation/{id}", jobfamily_handler.GetTechnologySkillsByOccupation},
+
 }

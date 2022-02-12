@@ -152,6 +152,41 @@ func GetSkillsByOccupation(w http.ResponseWriter, r *http.Request, ctx helper.Ap
 	return nil
 }
 
+func GetTechnologySkillsByOccupation(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
+	params := mux.Vars(r)
+
+	// get the id from the url
+	idStr := params["id"]
+	authorization := ctx.VNConfiguration.ONET.AuthType + " " + ctx.VNConfiguration.ONET.AuthToken
+	acceptType := ctx.VNConfiguration.ONET.AcceptType
+	client := &http.Client{}
+	url := ctx.VNConfiguration.ONET.Base + "occupations/" + idStr + "/summary/technology_skills"
+	fmt.Println(url)
+	r, _ = http.NewRequest(http.MethodGet, url, nil) // URL-encoded payload
+	r.Header.Add("Authorization", authorization)
+	r.Header.Add("Content-Type", "Content-Type: application/vnd.org.onetcenter.online.occupation.skills+json")
+	r.Header.Add("Accept", acceptType)
+
+	resp, _ := client.Do(r)
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("failed to read the body, err: %v", err)
+	}
+
+	occupationTechnologySkills := &model.OccupationTechnologySkills{}
+	// casting it to a string removes all the weird spaces, escapes the quotes, etc.
+	sb := string(body)
+	fmt.Println(sb)
+	if err := json.Unmarshal([]byte(sb), &occupationTechnologySkills); err != nil {
+		return err
+	}
+
+	if err := json.NewEncoder(w).Encode(occupationTechnologySkills); err != nil {
+		return fmt.Errorf("cannot write the json, err: %v", err)
+	}
+	return nil
+}
+
 func GetKnowledgeSummaryByOccupation(w http.ResponseWriter, r *http.Request, ctx helper.AppContext) error {
 	params := mux.Vars(r)
 
