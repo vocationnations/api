@@ -51,7 +51,7 @@ func (l Link) String() string {
 }
 
 func (o Occupation) String() string {
-	return fmt.Sprintf("Href: <%s> Code: <%s> Title: <%s> Tags: [BrightOutlook: <%t> Green: <%t>] OccupationJobFamily: <%s>", o.Href, o.Code, o.Title, o.Tags.BrightOutlook, o.Tags.Green, o.OJobFamily)
+	return fmt.Sprintf("Href: <%s> Code: <%s> Label: <%s> Tags: [BrightOutlook: <%t> Green: <%t>] OccupationJobFamily: <%s>", o.Href, o.Code, o.Title, o.Tags.BrightOutlook, o.Tags.Green, o.OJobFamily)
 }
 
 func (ojf OccupationJobFamily) String() string {

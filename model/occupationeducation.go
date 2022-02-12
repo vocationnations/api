@@ -3,9 +3,9 @@ package model
 import "fmt"
 
 type OccupationEducation struct {
-	Code	string  `json:"code"`
-	Report     string  `json:"report"`
-	OLevelRequired   LevelRequired  `json:"level_required"`
+	Code           string        `json:"code"`
+	Report         string        `json:"report"`
+	OLevelRequired LevelRequired `json:"level_required"`
 }
 
 type LevelRequired struct {
@@ -13,13 +13,13 @@ type LevelRequired struct {
 }
 
 type Category struct {
-	Name       string      `json:"name"`
-	OScore    Score      `json:"score"`
+	Name   string `json:"name"`
+	OScore Score  `json:"score"`
 }
 
 type Score struct {
-	Scale    string      `json:"scale"`
-	Value       int      `json:"value"`
+	Scale string `json:"scale"`
+	Value int    `json:"value"`
 }
 
 func (e OccupationEducation) String() string {
@@ -35,5 +35,5 @@ func (c Category) String() string {
 }
 
 func (s Score) String() string {
-	return fmt.Sprintf("Scale: <%s> Value: <%d>", s.Scale, s.Value)
+	return fmt.Sprintf("Scale: <%s> Number: <%d>", s.Scale, s.Value)
 }

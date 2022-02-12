@@ -1,6 +1,5 @@
 package model
 
-
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
@@ -9,20 +8,20 @@ import (
 
 func TestSkill_String(t *testing.T) {
 	tests := []struct {
-		name        string
-		id          int
-		skill_name  string
-		value        int
-		user_entry_id   int
-		expectedStr string
+		name          string
+		id            int
+		skill_name    string
+		value         int
+		user_entry_id int
+		expectedStr   string
 	}{
 		{
-			name:        "test returns expected string with proper data",
-			id:          1,
+			name:          "test returns expected string with proper data",
+			id:            1,
 			skill_name:    "java",
-			value:    50,
+			value:         50,
 			user_entry_id: 1,
-			expectedStr: "ID: <1> Skill_name: <java> Value: <50> User_entry_id: <1>",
+			expectedStr:   "ID: <1> Skill_name: <java> Number: <50> User_entry_id: <1>",
 		},
 	}
 
@@ -34,4 +33,3 @@ func TestSkill_String(t *testing.T) {
 		})
 	}
 }
-

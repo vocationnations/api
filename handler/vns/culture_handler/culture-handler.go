@@ -20,11 +20,11 @@ func CreateCultureEntry(w http.ResponseWriter, r *http.Request, ctx helper.AppCo
 	fmt.Printf("CultureEntry: %s", cltrEntry)
 
 	if _, err := db.Model(&cltrEntry).Insert(); err != nil {
-		return fmt.Errorf("cannot insert user professions to the database, err: %v", err)
+		return fmt.Errorf("cannot insert culture entry to the database, err: %v", err)
 	}
 
 	if err := json.NewEncoder(w).Encode(&cltrEntry); err != nil {
-		return fmt.Errorf("cannot encode the user professions for printing, err: %v", err)
+		return fmt.Errorf("cannot encode the culture entry for printing, err: %v", err)
 	}
 	return nil
 }

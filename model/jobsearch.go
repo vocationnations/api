@@ -3,22 +3,21 @@ package model
 import "fmt"
 
 type KeywordWrapper struct {
-	Keyword     string       `json:"keyword"`
-	Start      int          `json:"start"`
-	End        int          `json:"end"`
-	Total      int          `json:"total"`
-	OLinks     []Link       `json:"link"`
+	Keyword    string              `json:"keyword"`
+	Start      int                 `json:"start"`
+	End        int                 `json:"end"`
+	Total      int                 `json:"total"`
+	OLinks     []Link              `json:"link"`
 	Occupation []OccupationKeyword `json:"occupation"`
 }
 
 type OccupationKeyword struct {
-	Href       string              `json:"href"`
-	RelevanceScore      int          `json:"relevance_score"`
-	Code       string              `json:"code"`
-	Title      string              `json:"title"`
-	Tags       Tag                 `json:"tags"`
+	Href           string `json:"href"`
+	RelevanceScore int    `json:"relevance_score"`
+	Code           string `json:"code"`
+	Title          string `json:"title"`
+	Tags           Tag    `json:"tags"`
 }
-
 
 func (key KeywordWrapper) String() string {
 	return fmt.Sprintf(
@@ -31,5 +30,5 @@ func (key KeywordWrapper) String() string {
 }
 
 func (o OccupationKeyword) String() string {
-	return fmt.Sprintf("Href: <%s> RelevanceScore: <%d> Code: <%s> Title: <%s> Tags: [BrightOutlook: <%t> Green: <%t>]", o.Href, o.RelevanceScore, o.Code, o.Title, o.Tags.BrightOutlook, o.Tags.Green)
+	return fmt.Sprintf("Href: <%s> RelevanceScore: <%d> Code: <%s> Label: <%s> Tags: [BrightOutlook: <%t> Green: <%t>]", o.Href, o.RelevanceScore, o.Code, o.Title, o.Tags.BrightOutlook, o.Tags.Green)
 }

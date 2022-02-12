@@ -10,5 +10,5 @@ type UsersProfessions struct {
 }
 
 func (u UsersProfessions) String() string {
-	return fmt.Sprintf("ID: <%d> Title: <%s> ProfessionId: <%s>", u.UserId, u.Title, u.ProfessionId)
+	return fmt.Sprintf("ID: <%d> Label: <%s> ProfessionId: <%s>", u.UserId, u.Title, u.ProfessionId)
 }

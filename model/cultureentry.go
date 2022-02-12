@@ -9,7 +9,7 @@ type CultureEntry struct {
 	Adhocracy float64  `json:"adhocracy"`
 	Market    float64  `json:"market"`
 	Hierarchy float64  `json:"hierarchy"`
-	RawEntry  string   `json:"raw_entry"`
+	RawData   string   `json:"raw_data"`
 	UserId    int      `json:"user_id"`
 }
 
