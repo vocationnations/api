@@ -49,7 +49,7 @@ func StartAPIServer(ctx helper.AppContext) {
 	n.UseHandler(router)
 	log.Println("===> Starting app (v" + ctx.VNConfiguration.Version + ") on port " + ctx.VNConfiguration.APIPort + " in " + ctx.VNConfiguration.Env + " mode.")
 	if ctx.VNConfiguration.Env == helper.ENVLocal {
-		n.Run("localhost:" + ctx.VNConfiguration.APIPort)
+		n.Run(":" + ctx.VNConfiguration.APIPort)
 	} else {
 		n.Run(":" + ctx.VNConfiguration.APIPort)
 	}
