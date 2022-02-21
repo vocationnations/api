@@ -38,7 +38,7 @@ func StartAPIServer(ctx helper.AppContext) {
 
 	// enable CORS
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowedOrigins: []string{"*"},
 		Debug:          true,
 	})
 
