@@ -3,7 +3,7 @@ package model
 import "fmt"
 
 type ClimateQuestionAnswers struct {
-	tableName struct{} `pg:"steps"`
+	tableName struct{} `pg:"climatequestionanswers"`
 	Id        int      `json:"id"`
 	QuestionId  int   `json:"question_id"`
 	StepId  int   `json:"step_id"`
